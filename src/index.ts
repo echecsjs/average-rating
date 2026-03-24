@@ -9,10 +9,10 @@ function averageRatingOfOpponents(
 ): number {
   const opponentRatings: number[] = [];
   for (const g of gamesForPlayer(playerId, games)) {
-    if (g.blackId === BYE_SENTINEL || g.whiteId === BYE_SENTINEL) {
+    if (g.black === BYE_SENTINEL || g.white === BYE_SENTINEL) {
       continue;
     }
-    const opponentId = g.whiteId === playerId ? g.blackId : g.whiteId;
+    const opponentId = g.white === playerId ? g.black : g.white;
     const opponent = players.find((p) => p.id === opponentId);
     if (opponent?.rating !== undefined) {
       opponentRatings.push(opponent.rating);
@@ -32,10 +32,10 @@ function averageRatingOfOpponentsCut1(
 ): number {
   const opponentRatings: number[] = [];
   for (const g of gamesForPlayer(playerId, games)) {
-    if (g.blackId === BYE_SENTINEL || g.whiteId === BYE_SENTINEL) {
+    if (g.black === BYE_SENTINEL || g.white === BYE_SENTINEL) {
       continue;
     }
-    const opponentId = g.whiteId === playerId ? g.blackId : g.whiteId;
+    const opponentId = g.white === playerId ? g.black : g.white;
     const opponent = players.find((p) => p.id === opponentId);
     if (opponent?.rating !== undefined) {
       opponentRatings.push(opponent.rating);

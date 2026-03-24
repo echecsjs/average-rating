@@ -83,7 +83,7 @@ pnpm lint && pnpm test && pnpm build
 - Both functions look up each opponent in the `players` array by id and read
   their `rating`. Opponents not found in `players` (or with no rating) are
   skipped.
-- A `Game` with `blackId: ''` (empty string) represents a **bye**. Byes are
+- A `Game` with `black: ''` (empty string) represents a **bye**. Byes are
   excluded from the average — there is no rated opponent.
 - `averageRatingOfOpponentsCut1` collects all opponent ratings, removes the
   single lowest value, then returns the average of the remainder. If only one
