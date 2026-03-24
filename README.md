@@ -20,6 +20,7 @@ npm install @echecs/average-rating
 
 ```typescript
 import { averageRatingOfOpponents } from '@echecs/average-rating';
+import type { Game, GameKind } from '@echecs/average-rating';
 
 const players = [
   { id: 'A', rating: 1800 },
@@ -28,10 +29,12 @@ const players = [
   { id: 'D', rating: 1900 },
 ];
 // games[n] = round n+1; Game has no `round` field
-const games = [
+const games: Game[][] = [
   [{ black: 'B', result: 1, white: 'A' }], // round 1
   [{ black: 'C', result: 0.5, white: 'A' }], // round 2
   [{ black: 'A', result: 0, white: 'D' }], // round 3
+  // Byes excluded from ARO regardless of kind
+  [{ black: '', kind: 'half-bye', result: 0.5, white: 'A' }], // round 4
 ];
 
 const avg = averageRatingOfOpponents('A', games, players);
@@ -43,7 +46,8 @@ const avg = averageRatingOfOpponents('A', games, players);
 All functions require a `players` array whose entries carry a `rating` field.
 They return `0` when no rated opponents have been faced. Round is determined by
 array position: `games[0]` = round 1, `games[1]` = round 2, etc. The `Game` type
-has no `round` field.
+has no `round` field. The optional `kind?: GameKind` field on `Game` classifies
+unplayed rounds; byes are excluded from all ARO calculations.
 
 ### `averageRatingOfOpponents(playerId, games, players)`
 

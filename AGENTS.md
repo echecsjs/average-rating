@@ -27,6 +27,11 @@ All functions conform to the signature:
 `games[1]` contains round-2 games, and so on. The `Game` type no longer has a
 `round` field — round is determined by array position.
 
+The `Game` type carries an optional `kind?: GameKind` field. When present it
+identifies the nature of an unplayed round (e.g. `'half-bye'`, `'full-bye'`,
+`'forfeit-win'`, `'forfeit-loss'`, `'zero-bye'`, `'pairing-bye'`). Byes are
+excluded from ARO calculations regardless of `kind`.
+
 `Player` objects **must** carry a `rating` field (number). Functions return `0`
 when the player has faced no rated opponents.
 
