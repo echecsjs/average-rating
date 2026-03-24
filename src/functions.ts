@@ -3,16 +3,16 @@ import { BYE_SENTINEL, gamesForPlayer } from './utilities.js';
 import type { Game, Player } from './types.js';
 
 function averageRatingOfOpponents(
-  playerId: string,
+  player: string,
   games: Game[][],
   players: Player[],
 ): number {
   const opponentRatings: number[] = [];
-  for (const g of gamesForPlayer(playerId, games)) {
+  for (const g of gamesForPlayer(player, games)) {
     if (g.black === BYE_SENTINEL || g.white === BYE_SENTINEL) {
       continue;
     }
-    const opponentId = g.white === playerId ? g.black : g.white;
+    const opponentId = g.white === player ? g.black : g.white;
     const opponent = players.find((p) => p.id === opponentId);
     if (opponent?.rating !== undefined) {
       opponentRatings.push(opponent.rating);
@@ -26,16 +26,16 @@ function averageRatingOfOpponents(
 }
 
 function averageRatingOfOpponentsCut1(
-  playerId: string,
+  player: string,
   games: Game[][],
   players: Player[],
 ): number {
   const opponentRatings: number[] = [];
-  for (const g of gamesForPlayer(playerId, games)) {
+  for (const g of gamesForPlayer(player, games)) {
     if (g.black === BYE_SENTINEL || g.white === BYE_SENTINEL) {
       continue;
     }
-    const opponentId = g.white === playerId ? g.black : g.white;
+    const opponentId = g.white === player ? g.black : g.white;
     const opponent = players.find((p) => p.id === opponentId);
     if (opponent?.rating !== undefined) {
       opponentRatings.push(opponent.rating);
