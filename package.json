@@ -3,7 +3,7 @@
   "bugs": {
     "url": "https://github.com/mormubis/average-rating/issues"
   },
-  "description": "Average Rating of Opponents tiebreak for chess tournaments following FIDE rules. Zero dependencies.",
+  "description": "Average Rating of Opponents tiebreaks (FIDE 10.1 and 10.6) for chess tournaments. Zero dependencies.",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/parser": "^8.57.0",
@@ -43,8 +43,10 @@
   ],
   "homepage": "https://github.com/mormubis/average-rating#readme",
   "keywords": [
+    "aro",
     "average-rating",
     "chess",
+    "cut1",
     "fide",
     "no-dependencies",
     "tiebreak",
@@ -75,5 +77,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "3.0.1"
+  "version": "3.0.2"
 }

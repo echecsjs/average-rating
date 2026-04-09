@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2] - 2026-04-09
+
+### Changed
+
+- updated package description to mention Cut-1 variant (FIDE 10.6)
+- added `aro` and `cut1` keywords
+
 ## [3.0.1] - 2026-04-09
 
 ### Fixed
