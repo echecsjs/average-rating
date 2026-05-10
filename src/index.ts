@@ -1,17 +1,14 @@
 import { gamesForPlayer } from './utilities.js';
 
-import type { Game, Player } from './types.js';
+import type { CompletedRound, Player } from '@echecs/tournament';
 
 function averageRatingOfOpponents(
   player: string,
-  games: Game[][],
+  rounds: CompletedRound[],
   players: Player[],
 ): number {
   const opponentRatings: number[] = [];
-  for (const g of gamesForPlayer(player, games)) {
-    if (g.black === g.white) {
-      continue;
-    }
+  for (const g of gamesForPlayer(player, rounds)) {
     const opponentId = g.white === player ? g.black : g.white;
     const opponent = players.find((p) => p.id === opponentId);
     if (opponent?.rating !== undefined) {
@@ -27,4 +24,10 @@ function averageRatingOfOpponents(
 
 export { averageRatingOfOpponents, averageRatingOfOpponents as tiebreak };
 
-export { type GameKind, type Result, type Game, type Player } from './types.js';
+export type {
+  Bye,
+  CompletedRound,
+  Game,
+  Pairing,
+  Player,
+} from '@echecs/tournament';

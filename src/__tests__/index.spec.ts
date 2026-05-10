@@ -3,39 +3,42 @@ import { describe, expect, it } from 'vitest';
 import { tiebreak as averageRatingOfOpponentsCut1 } from '../cut1.js';
 import { tiebreak as averageRatingOfOpponents } from '../index.js';
 
-import type { Game, Player } from '../types.js';
+import type { CompletedRound, Player } from '@echecs/tournament';
 
-// 4 players, 3 rounds with ratings:
-// A(2400), B(2200), C(2000), D(2100)
-// Round 1: A(W) 1-0 B, C(W) 0-1 D
-// Round 2: A(W) 0.5-0.5 D, C(W) 0-1 B
-// Round 3: A(W) 1-0 C, D(W) 1-0 B
 const PLAYERS: Player[] = [
-  { id: 'A', rating: 2400 },
-  { id: 'B', rating: 2200 },
-  { id: 'C', rating: 2000 },
-  { id: 'D', rating: 2100 },
+  { id: 'A', points: 2.5, rank: 1, rating: 2400 },
+  { id: 'B', points: 1, rank: 3, rating: 2200 },
+  { id: 'C', points: 0, rank: 4, rating: 2000 },
+  { id: 'D', points: 2.5, rank: 2, rating: 2100 },
 ];
 
-const GAMES: Game[][] = [
-  [
-    { black: 'B', result: 1, white: 'A' },
-    { black: 'D', result: 0, white: 'C' },
-  ],
-  [
-    { black: 'D', result: 0.5, white: 'A' },
-    { black: 'B', result: 0, white: 'C' },
-  ],
-  [
-    { black: 'C', result: 1, white: 'A' },
-    { black: 'B', result: 1, white: 'D' },
-  ],
+const ROUNDS: CompletedRound[] = [
+  {
+    byes: [],
+    games: [
+      { black: 'B', result: 'white', white: 'A' },
+      { black: 'D', result: 'black', white: 'C' },
+    ],
+  },
+  {
+    byes: [],
+    games: [
+      { black: 'D', result: 'draw', white: 'A' },
+      { black: 'B', result: 'black', white: 'C' },
+    ],
+  },
+  {
+    byes: [],
+    games: [
+      { black: 'C', result: 'white', white: 'A' },
+      { black: 'B', result: 'white', white: 'D' },
+    ],
+  },
 ];
 
 describe('averageRatingOfOpponents', () => {
   it("returns average of OTB opponents' ratings rounded to nearest integer", () => {
-    // A played B(2200), D(2100), C(2000) → (2200+2100+2000)/3 = 6300/3 = 2100
-    expect(averageRatingOfOpponents('A', GAMES, PLAYERS)).toBe(2100);
+    expect(averageRatingOfOpponents('A', ROUNDS, PLAYERS)).toBe(2100);
   });
 
   it('handles player with no games', () => {
@@ -45,13 +48,13 @@ describe('averageRatingOfOpponents', () => {
 
 describe('averageRatingOfOpponentsCut1', () => {
   it('drops lowest-rated opponent and averages the rest', () => {
-    // A played B(2200), D(2100), C(2000) → sorted: [2000, 2100, 2200]
-    // drop lowest (2000) → (2100+2200)/2 = 4300/2 = 2150
-    expect(averageRatingOfOpponentsCut1('A', GAMES, PLAYERS)).toBe(2150);
+    expect(averageRatingOfOpponentsCut1('A', ROUNDS, PLAYERS)).toBe(2150);
   });
 
   it('returns 0 when only one opponent (all cut)', () => {
-    const games: Game[][] = [[{ black: 'B', result: 1, white: 'A' }]];
-    expect(averageRatingOfOpponentsCut1('A', games, PLAYERS)).toBe(0);
+    const rounds: CompletedRound[] = [
+      { byes: [], games: [{ black: 'B', result: 'white', white: 'A' }] },
+    ];
+    expect(averageRatingOfOpponentsCut1('A', rounds, PLAYERS)).toBe(0);
   });
 });

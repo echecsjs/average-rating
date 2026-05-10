@@ -5,10 +5,10 @@
   },
   "description": "Average Rating of Opponents tiebreaks (FIDE 10.1 and 10.6) for chess tournaments. Zero dependencies.",
   "peerDependencies": {
-    "@echecs/tournament": "^2.0.0"
+    "@echecs/tournament": "^3.0.0"
   },
   "devDependencies": {
-    "@echecs/tournament": "^2.1.2",
+    "@echecs/tournament": "^3.1.0",
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/parser": "^8.57.0",
     "@vitest/coverage-v8": "^4.1.0",
@@ -85,5 +85,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "3.0.3"
+  "version": "4.0.0"
 }
