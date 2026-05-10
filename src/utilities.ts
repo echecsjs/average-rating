@@ -1,7 +1,9 @@
-import type { Game } from './types.js';
+import type { CompletedRound, Game } from '@echecs/tournament';
 
-function gamesForPlayer(player: string, games: Game[][]): Game[] {
-  return games.flat().filter((g) => g.white === player || g.black === player);
+function gamesForPlayer(player: string, rounds: CompletedRound[]): Game[] {
+  return rounds
+    .flatMap((r) => r.games)
+    .filter((g) => g.white === player || g.black === player);
 }
 
 export { gamesForPlayer };
