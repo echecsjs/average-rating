@@ -1,12 +1,8 @@
 import { gamesForPlayer } from './utilities.js';
 
-import type { CompletedRound, Player } from '@echecs/tournament';
+import type { Tiebreak } from '@echecs/tournament';
 
-function averageRatingOfOpponents(
-  player: string,
-  rounds: CompletedRound[],
-  players: Player[],
-): number {
+const averageRatingOfOpponents: Tiebreak = (player, rounds, players) => {
   const opponentRatings: number[] = [];
   for (const g of gamesForPlayer(player, rounds)) {
     const opponentId = g.white === player ? g.black : g.white;
@@ -20,7 +16,7 @@ function averageRatingOfOpponents(
   }
   const sum = opponentRatings.reduce((accumulator, r) => accumulator + r, 0);
   return Math.round(sum / opponentRatings.length);
-}
+};
 
 export { averageRatingOfOpponents, averageRatingOfOpponents as tiebreak };
 
