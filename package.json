@@ -48,6 +48,10 @@
     "./median1": {
       "import": "./dist/median1.js",
       "types": "./dist/median1.d.ts"
+    },
+    "./median2": {
+      "import": "./dist/median2.js",
+      "types": "./dist/median2.d.ts"
     }
   },
   "files": [
