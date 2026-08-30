@@ -73,6 +73,10 @@ determined by array position: `games[0]` = round 1, `games[1]` = round 2, etc.
 The `Game` type has no `round` field. The optional `kind?: GameKind` field on
 `Game` classifies unplayed rounds; byes are excluded from all ARO calculations.
 
+> **Fixed in 4.1.0:** Forfeit opponents are excluded from ratings-based
+> tie-breaks per FIDE C.07 15.2. This affects `averageRatingOfOpponents` and
+> `averageRatingOfOpponentsCut1`.
+
 ### Types
 
 #### `Player`
@@ -143,6 +147,62 @@ import {
   averageRatingOfOpponentsCut1,
   tiebreak,
 } from '@echecs/average-rating/cut1';
+```
+
+### `@echecs/average-rating/cut2`
+
+#### `averageRatingOfOpponentsCut2(playerId, games, players)` / `tiebreak`
+
+**FIDE section 10.1 + 14.2** — Average rating of opponents minus the two
+lowest-rated ones (Cut-2). Collects all opponent ratings, removes the two
+lowest, then returns the rounded integer average of the remainder. Returns `0`
+if fewer than three rated opponents were faced.
+
+`tiebreak` is an alias for `averageRatingOfOpponentsCut2`.
+
+```typescript
+import {
+  averageRatingOfOpponentsCut2,
+  tiebreak,
+} from '@echecs/average-rating/cut2';
+```
+
+### `@echecs/average-rating/median1`
+
+#### `averageRatingOfOpponentsMedian1(playerId, games, players)` / `tiebreak`
+
+**FIDE section 10.1 + 14.3** — Average rating of opponents after excluding one
+lowest-rated and one highest-rated opponent (Median-1). Collects all opponent
+ratings, removes the single lowest and the single highest, then returns the
+rounded integer average of the remainder. Returns `0` if fewer than three rated
+opponents were faced.
+
+`tiebreak` is an alias for `averageRatingOfOpponentsMedian1`.
+
+```typescript
+import {
+  averageRatingOfOpponentsMedian1,
+  tiebreak,
+} from '@echecs/average-rating/median1';
+```
+
+### `@echecs/average-rating/median2`
+
+#### `averageRatingOfOpponentsMedian2(playerId, games, players)` / `tiebreak`
+
+**FIDE section 10.1 + 14.4** — Average rating of opponents after excluding two
+lowest-rated and two highest-rated opponents (Median-2). Collects all opponent
+ratings, removes the two lowest and the two highest, then returns the rounded
+integer average of the remainder. Returns `0` if fewer than five rated opponents
+were faced.
+
+`tiebreak` is an alias for `averageRatingOfOpponentsMedian2`.
+
+```typescript
+import {
+  averageRatingOfOpponentsMedian2,
+  tiebreak,
+} from '@echecs/average-rating/median2';
 ```
 
 ## Contributing

@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.0] - 2026-08-30
+
+### Added
+
+- `@echecs/average-rating/cut2` — ARO Cut-2 (FIDE C.07 10.1 + 14.2)
+- `@echecs/average-rating/median1` — ARO Median-1 (FIDE C.07 10.1 + 14.3)
+- `@echecs/average-rating/median2` — ARO Median-2 (FIDE C.07 10.1 + 14.4)
+
+### Fixed
+
+- Forfeit opponents are excluded from ratings-based tie-breaks (FIDE C.07 15.2);
+  affects `averageRatingOfOpponents` and `averageRatingOfOpponentsCut1`
+
 ## [3.0.3] - 2026-04-17
 
 ### Fixed
