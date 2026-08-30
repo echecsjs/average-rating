@@ -40,6 +40,18 @@
     "./cut1": {
       "import": "./dist/cut1.js",
       "types": "./dist/cut1.d.ts"
+    },
+    "./cut2": {
+      "import": "./dist/cut2.js",
+      "types": "./dist/cut2.d.ts"
+    },
+    "./median1": {
+      "import": "./dist/median1.js",
+      "types": "./dist/median1.d.ts"
+    },
+    "./median2": {
+      "import": "./dist/median2.js",
+      "types": "./dist/median2.d.ts"
     }
   },
   "files": [

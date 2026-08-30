@@ -2,7 +2,13 @@ import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   dts: true,
-  entry: ['src/index.ts', 'src/cut1.ts'],
+  entry: [
+    'src/index.ts',
+    'src/cut1.ts',
+    'src/cut2.ts',
+    'src/median1.ts',
+    'src/median2.ts',
+  ],
   format: 'esm',
   minify: true,
   outDir: 'dist',
